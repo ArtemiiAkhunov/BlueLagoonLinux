@@ -188,3 +188,16 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+
+# Remove the borders from windows
+
+default_border pixel 0
+
+# Add spacing between windows
+
+gaps inner 5
+gaps outer 5
+
+# Set the wallpaper
+
+exec --no-startup-id feh --bg-scale ~/.wallpapers/wallpaper.jpg
