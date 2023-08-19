@@ -4,7 +4,7 @@ sudo pacman -Syu
 
 # Installing neessary packages
 
-sudo pacman -S xorg xorg-xinit pulseaudio sof-firmware alsa i3-gaps alacritty rofi firefox lightdm lightdm-gtk-greeter feh rustup
+sudo pacman -S xorg xorg-xinit pulseaudio sof-firmware alsa i3-gaps alacritty rofi firefox lightdm lightdm-gtk-greeter feh rustup gnome-themes-extra
 
 # Making necessery folders
 
@@ -55,3 +55,6 @@ cp -R dotfiles/* $HOME/.config
 
 cp wallpaper.jpg $HOME/.wallpapers
 
+sudo cp wallpaper.jpg /usr/share/pixmaps/.
+
+sudo cp lightdm-gtk-greeter.conf /etc/lightdm/.
