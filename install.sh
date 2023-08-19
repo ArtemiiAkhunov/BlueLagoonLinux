@@ -35,7 +35,7 @@ rustup default stable
 
 cd ..
 
-cp eww/target/release/eww ../dotfiles/eww/eww
+sudo cp eww/target/release/eww /bin/eww
 
 # Yay
 
