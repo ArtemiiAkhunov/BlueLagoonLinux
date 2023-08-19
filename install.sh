@@ -6,6 +6,10 @@ sudo pacman -Syu
 
 sudo pacman -S xorg xorg-xinit pulseaudio sof-firmware alsa i3-gaps alacritty rofi firefox lightdm lightdm-gtk-greeter feh rustup gnome-themes-extra
 
+# Enabling lightdm
+
+systemctl enable lightdm
+
 # Making necessery folders
 
 mkdir $HOME/.config
