@@ -4,7 +4,7 @@ sudo pacman -Syu
 
 # Installing neessary packages
 
-sudo pacman -S xorg xorg-xinit pulseaudio pulseaudio-alsa pulseaudio-jack sof-firmware alsa pavucontrol i3-gaps kitty rofi firefox lightdm lightdm-gtk-greeter feh rustup gnome-themes-extra nm-connection-editor modemmanager usb_modeswitch ca-certificates ttf-firacode-nerd
+sudo pacman -S xorg xorg-xinit pulseaudio pulseaudio-alsa pulseaudio-jack sof-firmware alsa pavucontrol brightnessctl i3-gaps kitty rofi firefox lightdm lightdm-gtk-greeter feh rustup gnome-themes-extra nm-connection-editor modemmanager usb_modeswitch ca-certificates ttf-firacode-nerd
 
 # Enabling and configuring lightdm
 
