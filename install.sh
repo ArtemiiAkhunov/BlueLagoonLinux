@@ -90,6 +90,11 @@ cp -R dotfiles/* $HOME/.config
 
 cp wallpaper.jpg $HOME/.wallpapers
 
+sudo cp *.service /etc/systemd/system/.
+
 sudo cp wallpaper.jpg /usr/share/pixmaps/.
 
 sudo cp lightdm-gtk-greeter.conf /etc/lightdm/.
+
+sudo systemctl enable suspend@$USER
+sudo systemctl enable resume@$USER
