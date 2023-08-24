@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [[ "$1" == "--song" ]]; then
+    playerctl --player=ncspot metadata title | cut -c -80
+elif [[ "$1" == "--artist" ]]; then
+    playerctl --player=ncspot metadata artist | cut -c -80
+elif [[ "$1" == "--status" ]]; then
+    playerctl --player=ncspot status 
+elif [[ "$1" == "--toggle" ]]; then
+    playerctl --player=ncspot play-pause
+elif [[ "$1" == "--next" ]]; then
+    playerctl --player=ncspot next
+elif [[ "$1" == "--loop-get" ]]; then
+    playerctl --player=ncspot loop
+elif [[ "$1" == "--shuffle-get" ]]; then
+    playerctl --player=ncspot shuffle
+elif [[ "$1" == "--image-get" ]]; then
+    rm /tmp/albumcover.jpg
+    curl -s -o /tmp/albumcover.jpg $(playerctl --player=ncspot metadata mpris:artUrl)
+    echo "/tmp/albumcover.jpg"
+fi

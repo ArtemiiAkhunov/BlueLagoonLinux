@@ -1,0 +1,87 @@
+(defwidget topbar [] 
+	(centerbox :class "bar" :orientation "h"
+	(workspaces)
+	(music)
+	(sidestuff)))
+
+(defwidget sidestuff []
+	(box :class "sidestuff" :orientation "h" :space-evently false :haligh "end" :spacing 10
+	(metric :label "🔊"
+		:value volume
+		:onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%")
+	(metric :label ""
+		:value {EWW_RAM.used_mem_perc}
+		:onchange "")
+	(metric :label "💾"
+		:value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
+		:onchange "")
+	(metric :label ""
+		:value {EWW_BATTERY["BAT0"].capacity}
+		:onchange "")
+	(button :onclick ("systemctl poweroff")
+	"")
+	(box :orientation "h"
+		time))) 
+
+(defvar workspaces "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]")
+
+(defpoll current_ws
+	:interval "250ms"
+	`i3-msg -t get_workspaces | jq -r '.[] | select(.focused).name'`)
+
+(defwidget workspaces []
+	(box :class "workspaces"  :orientation "h"
+       :space-evenly true
+       :halign "start"
+       :spacing 10
+	(for ws in workspaces 
+		(button :class "btn_${ws == current_ws ? "active" : ""}"
+			:onclick "i3-msg workspace ${ws}"
+			"${ws == current_ws ? "" : ""}"))))
+
+(defpoll song :interval "1s" `scripts/music --song`)
+(defpoll artist :interval "1s" `scripts/music --artist`)
+(defpoll song_cover :interval "1s" 'scripts/music --image-get')
+;;;(defpoll shuffle_status :interval "250ms" `scripts/music --get-shuffle`)
+(defpoll play_status :interval "250ms" `scripts/music --status`)
+;;;(defpoll loop_status :interval "250ms" `scripts/music --loop-get`)
+
+(defwidget music []
+	(box :class "music" :orientation "h"
+	:space-evenly false
+	:halight "center"
+	:spacing 10
+	(image :path song_cover 
+	:image-width 30
+	:image-height 30)
+	(button :onclick 'scripts/music --toggle'
+		:onrightclick 'scripts/music --next'
+		"${play_status == "Playing" ? "" : ""}  ${song}  by  ${artist}")))
+
+(defpoll volume :interval "1s"
+  "scripts/getvol")
+(defpoll time :interval "10s"
+  "date '+%H:%M %b %d, %Y'")
+
+(defwidget metric [label value onchange]
+  (box :orientation "h"
+       :class "metric"
+       :space-evenly false
+       :halign: "end"
+    (box :class "label" label)
+    (scale :min 0
+           :max 101
+           :active {onchange != ""}
+           :value value
+           :onchange onchange)))
+
+(defwindow topbar
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "90%"
+                      :height "30px"
+                      :anchor "top center")
+  :reserve (struts :side "top" :distance "4%")
+  (topbar))
