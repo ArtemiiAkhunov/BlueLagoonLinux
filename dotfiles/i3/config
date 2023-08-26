@@ -45,6 +45,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5% && $refresh_i3status
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%- && $refresh_i3status
 
+# Adding a screenshot shortcut
+
+bindsym $mod+Shift+s exec --no-startup-id maim ~/Pictures/$(date +%s).png
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

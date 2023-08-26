@@ -4,13 +4,27 @@
 
 //Global Styles
 .bar {
-// opacity: 50%;
   background-color: #3a3a3a;
   color: #b0b4bc;
   padding: 10px;
 }
 
 // Styles on classes (see eww.yuck for more information)
+
+.powerbutton {
+  all: unset;
+  margin-left: 1px;
+  margin-right: 1px;
+  border-radius: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+
+.powerbutton:hover {
+  all: unset;
+  color: #D35D6E;
+}
+
 
 .sidestuff slider {
   all: unset;
